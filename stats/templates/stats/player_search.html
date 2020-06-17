@@ -1,0 +1,19 @@
+<html>
+<form method="get">
+    <input type="text" name="player">
+    <button type="submit">Search Player</button>
+</form>
+
+{% if search_result %}
+    {% for search in search_result %}
+    <h1> {{ search.fullName}} </h1>
+    <p>
+        Birthdate: {{ search.birthDate}}
+        City: {{ search.birthCity }}
+        Number: {{ search.primaryNumber }}
+
+
+    </p>
+    {% endfor %}
+{% endif %}
+</html>
