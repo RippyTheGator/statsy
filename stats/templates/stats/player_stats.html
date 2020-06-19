@@ -1,5 +1,5 @@
-<html>
-<h1></h1>
+{% extends 'stats/base.html' %}
+{% block content %}
     <h1> {{ fullname }} </h1>
     {% for stat in stats %}
             <b>Year: </b>{{ stat.season }}
@@ -7,3 +7,4 @@
     {% endfor %}
     <p>Total NHL points: {{ total_points }}</p>
 </html>
+{% endblock %}

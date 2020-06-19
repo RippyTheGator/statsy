@@ -1,5 +1,5 @@
-<html>
-<h1></h1>
+{% extends 'stats/base.html' %}
+{% block content %}
 <h3>Search player by full name</h3>
 <form method="get">
     <input type="text" name="player">
@@ -11,7 +11,6 @@
     {% for data in basic_data %}
     <h1> {{ data.fullName}} , <small>Active: {{ data.active }}</small></h1>
     <p>
-        id: {{ data.id }}
         Number: {{ data.primaryNumber }}<br>
         Birthdate: {{ data.birthDate}}<br>
         Birth Place: {{ data.birthCity }}, {{ data.birthStateProvince }} {{ data.birthCountry }}<br>
@@ -26,4 +25,4 @@
     </p>
     {% endfor %}
 {% endif %}
-</html>
+{% endblock %}

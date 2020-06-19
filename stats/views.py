@@ -35,12 +35,12 @@ def player_info(request):
     )
 
 
-# def total_pts(id, data, league):
-#     t = 0
-#     for i in range(len(data)):
-#         if data[i]['stat'] != {} and data[i]['league']['name'] == league:
-#             t += data[i]['stat']['points']
-#     return t
+def total_pts(id, data, league):
+    t = 0
+    for i in range(len(data)):
+        if data[i]['stat'] != {} and data[i]['league']['name'] == league:
+            t += data[i]['stat']['points']
+    return t
 
 
 def player_stats(request, id, fullname, arg):
