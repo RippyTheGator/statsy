@@ -1,0 +1,9 @@
+<html>
+<h1></h1>
+    <h1> {{ fullname }} </h1>
+    {% for stat in stats %}
+            <b>Year: </b>{{ stat.season }}
+            <b>, POINTS: </b>{{ stat.stat.points }}</br>
+    {% endfor %}
+    <p>Total NHL points: {{ total_points }}</p>
+</html>

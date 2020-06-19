@@ -1,18 +1,28 @@
 <html>
+<h1></h1>
+<h3>Search player by full name</h3>
 <form method="get">
     <input type="text" name="player">
     <button type="submit">Search Player</button>
 </form>
-
-{% if search_result %}
-    {% for search in search_result %}
-    <h1> {{ search.fullName}} </h1>
+{% if message.error %}
+    <p> {{ message.error }} </p>
+{% elif basic_data %}
+    {% for data in basic_data %}
+    <h1> {{ data.fullName}} , <small>Active: {{ data.active }}</small></h1>
     <p>
-        Birthdate: {{ search.birthDate}}
-        City: {{ search.birthCity }}
-        Number: {{ search.primaryNumber }}
-
-
+        id: {{ data.id }}
+        Number: {{ data.primaryNumber }}<br>
+        Birthdate: {{ data.birthDate}}<br>
+        Birth Place: {{ data.birthCity }}, {{ data.birthStateProvince }} {{ data.birthCountry }}<br>
+        Nationality: {{ data.nationality }}<br>
+        Height: {{ data.height }}<br>
+        Weight: {{ data.weight }}<br>
+        Shoots: {{ data.shootsCatches }}<br>
+        {% if data.active %}
+            Current Team: {{ data.currentTeam.name }}
+        {% endif %}
+        <a href={% url 'player_stats' id=data.id fullname=fullname arg='yearByYear' %}>Stats</a>
     </p>
     {% endfor %}
 {% endif %}
