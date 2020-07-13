@@ -13,11 +13,6 @@
  #wrapper {
     overflow-x: hidden;
  }
-@media screen and (max-width:768px){
-    #desktop-content {display:none;}
-}
-
-
 
  .content-article{
      padding-left: 15px;
@@ -62,6 +57,11 @@
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
 }
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
 
   #page-content-wrapper {
     min-width: 0;
