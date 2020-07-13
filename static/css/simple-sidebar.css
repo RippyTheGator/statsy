@@ -59,7 +59,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  #desktop-content {display: none}
+  #desktop-content {
+      visibility: hidden;
+      display: none
+  }
   }
 
   #page-content-wrapper {
