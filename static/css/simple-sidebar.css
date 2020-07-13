@@ -13,6 +13,11 @@
  #wrapper {
     overflow-x: hidden;
  }
+@media screen and (max-width:768px){
+    .desktop-content {display:none;}
+}
+
+
 
  .content-article{
      padding-left: 15px;
