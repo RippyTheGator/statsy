@@ -1,1 +1,49 @@
 from django.db import models
+
+
+class Player(models.Model):
+    id = models.IntegerField(primary_key=True)
+    full_name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    primary_number = models.CharField(max_length=3)
+    birth_date = models.DateField(auto_now=False)
+    birth_city = models.CharField(max_length=50)
+    birth_country = models.CharField(max_length=50)
+    nationality = models.CharField(max_length=50)
+    height = models.CharField(max_length=10)
+    weight = models.CharField(max_length=5)
+    active = models.BooleanField(default=False)
+    alternate_captain = models.BooleanField(default=False)
+    captain = models.BooleanField(default=False)
+    rookie = models.BooleanField(default=False)
+    shoot_catches = models.CharField(max_length=1)
+    roster_status = models.CharField(default='N', max_length=1)
+    draft = models.ForeignKey(
+        'Team', on_delete=models.SET_DEFAULT, related_name='draft', default=0)
+    year_drafted = models.CharField(max_length=50)
+    round_drafted = models.CharField(max_length=50)
+    selection_number = models.CharField(max_length=50)
+    team = models.ForeignKey(
+        'Team', default=0, on_delete=models.SET_DEFAULT, related_name='team')
+    primary_position = models.CharField(max_length=50)
+    view_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.full_name
+
+
+class Team(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=50)
+    venue_name = models.CharField(max_length=50)
+    abbrevation = models.CharField(max_length=3)
+    first_year_of_play = models.CharField(max_length=4)
+    division = models.CharField(max_length=50)
+    conference = models.CharField(max_length=50)
+    official_site = models.CharField(max_length=50)
+    team_active = models.BooleanField(default=False)
+    view_count = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,37 @@
+{% extends 'stats/index.html' %}
+{% block content %}
+<div class="content mt-5">
+    <div class="container">
+    <div class="row">
+        <div class="column ml-3">
+        <form action="{% url 'player_search' %}"class="form-inline" method="get">
+            <input class="form-control mr-sm-2" type="text" name="player">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Again</button>
+        </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h1 class="display-4">{{ player.first_name }} {{ player.last_name }} |  #{{ player.primary_number }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            Birthdate: {{player.birth_date}}<br>
+            Birth Place: {{player.birth_city}}, {{player.birth_country}}<br>
+            Nationality: {{player.nationality}}<br>
+            Height/Weight: {{player.height}}/{{player.weight}} lbs<br>
+            Team: {{player.team}}<br>
+            Position: {{player.primary_position}}<br>
+        </div>
+        <div class="content-article col-md-4 ">
+            Drafted by {{player.draft}}<br>
+            Draft Year: {{player.year_drafted}}<br>
+            {% if player.draft %}
+            {{player.round_drafted}} Round | {{player.selection_number}} Overall<br>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

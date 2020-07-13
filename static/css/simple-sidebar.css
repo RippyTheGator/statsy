@@ -1,0 +1,74 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ .a:hover {
+     text-decoration: none;
+ }
+
+
+ }
+
+ #wrapper {
+    overflow-x: hidden;
+ }
+
+ .content-article{
+     padding-left: 15px;
+     padding-right: 15px;
+     padding-top:10px;
+     padding-bottom:5px;
+     font-size: 16px;
+     border-top-style: solid;
+     border-color: lightgray;
+     border-width: 1px;
+     background-color: #fff8f0;
+ }
+ .content {
+     padding-right: 10px;
+     padding-left: 10px;
+     padding-right: 10px;
+     padding-top:10px;
+     padding-bottom: 10px;
+     border-style: solid;
+     border-width: 1px;
+     border-color: lightgray;
+     background-color: #f5f5f5;
+ }
+
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 3rem;
+  color:#ffc096;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -14rem;
+  }
+}

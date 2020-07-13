@@ -19,6 +19,10 @@ from stats import views as stats_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', stats_views.player_info, name='player_info'),
-    path('stats/<str:fullname>=<int:id>/<str:arg>/', stats_views.player_stats, name='player_stats')
+    path('', stats_views.home, name='home'),
+    path('player/', stats_views.player_search, name='player_search'),
+    path('player/<int:pk>/<str:first_name>-<str:last_name>/',
+         stats_views.PlayerDetailView.as_view(), name='player_info'),
+    path('player/all/', stats_views.PlayerListView.as_view(), name='player_list'),
+    path('team/<int:pk>/', stats_views.TeamDetailView.as_view(), name='team_info'),
 ]
