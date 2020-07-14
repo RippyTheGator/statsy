@@ -7,7 +7,6 @@
 
  #wrapper {
      position: relative;
-    overflow-x: hidden;
     min-height: 100vh;
 
  }
@@ -35,9 +34,6 @@
      background-color: #f5f5f5;
  }
 
- .stat-table {
-     max-width: 500px;
- }
 .footer {
     position: absolute;
     bottom: 0;
@@ -50,12 +46,6 @@
 
 }
 
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 3rem;
-  color:#ffc096;
-}
-
 #sidebar-wrapper .list-group {
   width: 15rem;
 }
@@ -63,10 +53,6 @@
 #page-content-wrapper {
   min-width: 100vw;
 
-}
-
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -84,4 +70,3 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -14rem;
   }
-}
