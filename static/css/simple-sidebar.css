@@ -36,8 +36,9 @@
      max-width: 500px;
  }
 .footer {
-    position: fixed;
+    position: absolute;
     background-color: #10294f;
+    width: 100%;
     color: white;
     text-align: center;
 
