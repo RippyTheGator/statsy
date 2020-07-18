@@ -5,12 +5,14 @@
 
  }
 
- html, body { height: 100%}
+ html, body {
+     margin: 0;
+     padding: 0;
+     height: 100%;
+ }
 
  #wrapper {
-    position: relative;
-    min-height: 100%;
-    height: 100%;
+
 
  }
 
@@ -50,6 +52,10 @@
 
 #page-content-wrapper {
   min-width: 100vw;
+  width: 100%;
+  position: relative;
+  min-height: 100%;
+  height: 100%;
 
 }
 
@@ -58,9 +64,4 @@
       visibility: hidden;
       display: none
   }
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
   }
