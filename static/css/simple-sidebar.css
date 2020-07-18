@@ -5,13 +5,14 @@
 
  }
 body, html {
-     height: 100vh;
+     min-height: 100vh;
+     flex-grow: 1;
+     flex-shrink: 0;
  }
 
  content {
-     min-height: 100%;
+     min-height: 100vh;
      flex-grow: 1;
-     height: 100vh;
  }
 
  header, content, footer {
