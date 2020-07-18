@@ -2,8 +2,6 @@
      text-decoration: none;
  }
 
-
- }
 body, html {
      min-height: 100vh;
      flex-grow: 1;
@@ -12,12 +10,9 @@ body, html {
 
  content {
      min-height: 100vh;
-     flex-grow: 1;
+
  }
 
- header, content, footer {
-     flex-shrink: 0;
- }
 
  .content-article{
      padding-left: 15px;
