@@ -19,13 +19,10 @@
 
 </head>
 
-<body style="background-color: #f5fbff">
-
-  <div id="wrapper" >
-
+<body class="d-flex flex-column min-vh-100" style="background-color: #f5fbff">
     <!-- Page Content -->
-    <div id="page-content-wrapper">
 
+    <header>
       <nav class="navbar navbar-expand-lg navbar-dark border-bottom" style="background-color:#10294f">
         <a class="navbar-brand" href="{% url 'home' %}">STATSY</a>
         <div class="navbar-text">-Fuck you Shoresy</div>
@@ -57,7 +54,8 @@
           </ul>
         </div>
       </nav>
-
+  </header>
+  <content>
       <div class="container">
         <div class="row">
         <div class="col-md-9">
@@ -93,7 +91,8 @@
         </div>
         </div>
         </div>
-        <footer class="footer py-3 mt-3">
+    </content>
+        <footer class="py-3 mt-auto">
                 <span class="text-muted">© 2020 Copyright
                     <a href="https://rippythegator.pythonanywhere.com">STATSY</a>
                 </span>
@@ -101,9 +100,6 @@
       </div>
     </div>
     <!-- /#page-content-wrapper -->
-  </div>
-  <!-- /#wrapper -->
-
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
