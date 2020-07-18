@@ -2,18 +2,6 @@
      text-decoration: none;
  }
 
-body, html {
-     min-height: 100vh;
-     flex-grow: 1;
-     flex-shrink: 0;
- }
-
- content {
-     min-height: 100vh;
-
- }
-
-
  .content-article{
      padding-left: 15px;
      padding-right: 15px;
