@@ -7,7 +7,7 @@ from tinymce.widgets import TinyMCE
 class UpdateAdmin(admin.ModelAdmin):
 
     fieldsets = [
-        ("Title/Date", {"fields": ["update_title", "update_published"]}),
+        ("Title/Date", {"fields": ["update_title"]}),
         ("Content", {"fields": ["update_content", "update_username"]}),
     ]
 
