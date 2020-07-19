@@ -1,0 +1,12 @@
+{% extends 'stats/index.html' %}
+{% block content %}
+{% for post in context %}
+<div class="content mt-5">
+    <h1 class="display-4 ml-2">{{ post.update_title }}</h1>
+    <div class="content-article ">
+        {{ post.update_content|safe }}
+        <footer class="blockquote-footer">Posted by: <strong>{{ post.update_username }}</strong>, <cite class="ml-2">{{ post.update_published }}</cite></footer>
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

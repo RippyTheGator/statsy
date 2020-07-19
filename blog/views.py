@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Update
 
-# Create your views here.
+
+def home_posts(request):
+    context = Update.objects.all().order_by("-update_published")[:5]
+    return render(request, 'blog/home.html', {"context": context})
