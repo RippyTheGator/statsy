@@ -34,26 +34,29 @@ class PlayerListView(SingleTableView):
 
 
 def player_search(request):
-    player = {}
     result = {}
-    page_obj = ''
-
+    table = None
     try:
         if 'player' in request.GET:
-            name = request.GET['player'].split(' ')
-            player = Player.objects.filter(
-                first_name__contains=name[0], last_name__contains=name[1]).all().order_by('last_name')
-            if len(player) == 1:
+            data = Player.objects.filter(
+                full_name__icontains=request.GET['player']
+            )
+            table = PlayerTable(data)
+            if len(data) == 1:
                 return redirect('player_info', pk=player[0].id, first_name=player[0].first_name, last_name=player[0].last_name)
-            paginator = Paginator(player, 20)
-            page_number = request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
             result['success'] = True
-            result['name'] = ' '.join(name)
+            result['name'] = request.GET['player']
+
+        # OLD CODE NOT USING DJANGO_TABLES2:
+        # player = Player.objects.filter(
+        # first_name__contains=name[0], last_name__contains=name[1]).all().order_by('last_name')
+        # paginator = Paginator(player, 20)
+        # page_number = request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
 
     except IndexError:
         result['message'] = "One character from first and last name is required! Try again."
-    return render(request, 'stats/player_search.html', {'page_obj': page_obj, 'result': result})
+    return render(request, 'stats/player_search.html', {'table': table, 'result': result, 'data': data})
 
 
 def player_stats(request):

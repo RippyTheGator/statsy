@@ -1,4 +1,5 @@
 {% extends 'stats/index.html' %}
+{% load render_table from django_tables2 %}
 {% block content %}
 <div class="content mt-5">
     <h3><small>Player Database Search</small></h3>
@@ -16,53 +17,12 @@
     {% if result.success %}
     <div class="content mt-2">
         <p> <b>Results for:</b> <i>{{ result.name|upper }}</i><br>
-            <i><small>Search returned {{ page_obj.paginator.count }} player(s)</small></i>
+            <i><small>Search returned {{ data.count }} player(s)</small></i>
         </p>
         <div class="content-article">
-        <table class="table table-hover table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Player</th>
-                    <th scope="col">Active</th>
-                    <th scope="col">Current Team</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Nationality</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in page_obj %}
-                <tr>
-                    <td>
-                        <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">
-                            {{player.first_name}}, {{player.last_name}}
-                        </a>
-                    </td>
-                    <td>{% if player.active %}Yes{% else %}No{% endif %}</td>
-                    <td>{{player.team}}</td>
-                    <td>{{player.primary_position}}</td>
-                    <td>{{player.nationality}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-            <div class="pagination">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1&player={{request.GET.player}}">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}&player={{request.GET.player}}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}&player={{request.GET.player}}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}&player={{request.GET.player}}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>
+            {% render_table table %}
         </div>
+
     </div>
     {% endif %}
 {% endblock %}
