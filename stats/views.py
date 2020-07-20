@@ -52,7 +52,7 @@ def player_search(request):
             table = PlayerTable(data)
             RequestConfig(request).configure(table)
             if len(data) == 1:
-                return redirect('player_info', pk=player[0].id, first_name=player[0].first_name, last_name=player[0].last_name)
+                return redirect('player_info', pk=data[0].id, first_name=data[0].first_name, last_name=data[0].last_name)
             result['success'] = True
             result['name'] = ' '.join(name)
 
