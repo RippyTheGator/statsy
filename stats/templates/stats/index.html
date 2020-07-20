@@ -63,27 +63,30 @@
                  <div class="content-article">
                      <div class="row">
                     <div class="col-6">
-                     <div class="card">
-                         <div class="card-header">Most Searched Players</div>
-                            <ul class="list-group list-group-flush">
+
+                         Most Searched Players
+                            <div class="content-article">
                                 {% for player in trending_player %}
-                                <li class="list-group-item">
-                                    <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a></li>
+
+                                    <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a><br>
                                 {% endfor %}
-                            </ul>
-                            <a href="#" class="btn btn-outline-primary">Players</a>
+
+                                <div class="text-center">
+                                <div class=card-footer> <a href="#" class="btn btn-outline-primary">Players</a></div>
+                                </div>
                     </div>
                     </div>
                     <div class="col-6">
-                    <div class="card">
-                        <div class="card-header">Most Searched Players</div>
-                           <ul class="list-group list-group-flush">
+
+                        Most Searched Players
+                        <div class="content-article">
                                {% for player in trending_player %}
-                               <li class="list-group-item">
-                                   <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a></li>
+
+                                   <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a><br>
                                {% endfor %}
-                           </ul>
-                           <a href="#" class="btn btn-outline-primary">Players</a>
+                          <div class="text-center">
+                          <div class=card-footer> <a href="#" class="btn btn-outline-primary">Players</a></div>
+                          </div>
                        </div>
                    </div>
                    </div>
