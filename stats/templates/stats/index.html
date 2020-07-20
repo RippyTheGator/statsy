@@ -57,6 +57,39 @@
   </header>
   <content style="flex-grow: 1">
       <div class="container">
+         <div id="mobile-content">
+             <div class="content mt-2 col-md-9" style="width:auto">
+                 <h5>Trending</h5>
+                 <div class="content-article">
+                     <div class="row">
+                    <div class="col-6">
+                     <div class="card">
+                         <div class="card-header">Most Searched Players</div>
+                            <ul class="list-group list-group-flush">
+                                {% for player in trending_player %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Players</a>
+                    </div>
+                    </div>
+                    <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">Most Searched Players</div>
+                           <ul class="list-group list-group-flush">
+                               {% for player in trending_player %}
+                               <li class="list-group-item">
+                                   <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a></li>
+                               {% endfor %}
+                           </ul>
+                           <a href="#" class="btn btn-outline-primary">Players</a>
+                       </div>
+                   </div>
+                   </div>
+                </div>
+        </div>
+    </div>
         <div class="row">
         <div class="col-md-9">
             {% block content %}

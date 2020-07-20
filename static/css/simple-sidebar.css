@@ -25,10 +25,14 @@
      background-color: #f5f5f5;
  }
 
+#mobile-content {display: none;}
 
 @media screen and (max-width: 768px) {
   #desktop-content {
       visibility: hidden;
       display: none
+  }
+  #mobile-content {
+      display:block;
   }
   }
