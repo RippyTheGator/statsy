@@ -3,7 +3,7 @@
 <div class="content mt-5">
     <div class="container">
     <div class="row">
-        <div class="column ml-3">
+        <div class="column ml-3 mb-2">
         <form action="{% url 'player_search' %}"class="form-inline" method="get">
             <input class="form-control mr-sm-2" type="text" name="player">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Again</button>
@@ -11,11 +11,14 @@
         </div>
     </div>
     <div class="row">
+        <div clas="column">
+            <img src="https://nhl.bamcontent.com/images/headshots/current/168x168/{{ player.id }}.jpg" width="75" height="75" style="border-radius: 50px">
+    </div>
         <div class="column">
             <h1 class="display-4">{{ player.first_name }} {{ player.last_name }} |  #{{ player.primary_number }}</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-2">
         <div class="col-md-8">
             Birthdate: {{player.birth_date}}<br>
             Birth Place: {{player.birth_city}}, {{player.birth_country}}<br>
