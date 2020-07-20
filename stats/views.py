@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.core.paginator import Paginator
-from django_tables2 import SingleTableView
+from django_tables2 import SingleTableView, RequestConfig
 from .models import Player, Team
 from .tables import PlayerTable
 import requests
@@ -32,20 +32,29 @@ class PlayerListView(SingleTableView):
     model = Player
     table_class = PlayerTable
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['count'] = Player.objects.all()
+        return context
+
 
 def player_search(request):
     result = {}
     table = None
+    data = None
+
     try:
         if 'player' in request.GET:
+            #data = Player.objects.filter(full_name__search=request.GET['player'])
+            name = request.GET['player'].split()
             data = Player.objects.filter(
-                full_name__icontains=request.GET['player']
-            )
+                first_name__startswith=name[0], last_name__startswith=name[1]).all().order_by('first_name')
             table = PlayerTable(data)
+            RequestConfig(request).configure(table)
             if len(data) == 1:
                 return redirect('player_info', pk=player[0].id, first_name=player[0].first_name, last_name=player[0].last_name)
             result['success'] = True
-            result['name'] = request.GET['player']
+            result['name'] = ' '.join(name)
 
         # OLD CODE NOT USING DJANGO_TABLES2:
         # player = Player.objects.filter(

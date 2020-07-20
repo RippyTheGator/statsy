@@ -16,8 +16,13 @@
 </div>
 <div class="content mt-5">
     <h3><small>All Players</small></h3>
+    <p>
+        <i><small>{{ count.count }} players in the database</small></i>
+    </p>
     <div class="content-article">
+        <div style="overflow-x:scroll;">
     {% render_table table %}
+    </div>
     </div>
 </div>
 {% endblock %}

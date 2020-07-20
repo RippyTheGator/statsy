@@ -8,14 +8,6 @@ class PlayerTable(tables.Table):
 
     class Meta:
         model = Player
-        template_name = 'django_tables2/bootstrap-responsive.html'
-        #fields = ('full_name', 'team', 'active', 'birth_date', 'birth_city')
-
-
-# class SearchPlayerTable(tables.Table):
-#     full_name
-#
-#
-#     class Meta:
-#     model = Player
-#     template_name = 'django_tables2/bootstrap-responsive.html'
+        #template_name = 'django_tables2/bootstrap-responsive.html'
+        exclude = ('id', 'view_count')
+        attrs = {'class': 'paleblue'}
