@@ -11,29 +11,36 @@
         </div>
     </div>
     <div class="row">
-        <div clas="column">
-            <img src="https://nhl.bamcontent.com/images/headshots/current/168x168/{{ player.id }}.jpg" width="75" height="75" style="border-radius: 50px">
-    </div>
-        <div class="column">
+            <img src="https://nhl.bamcontent.com/images/headshots/current/168x168/{{ player.id }}.jpg">
             <h1 class="display-4">{{ player.first_name }} {{ player.last_name }} |  #{{ player.primary_number }}</h1>
-        </div>
     </div>
     <div class="row mt-2">
         <div class="col-md-8">
-            Birthdate: {{player.birth_date}}<br>
-            Birth Place: {{player.birth_city}}, {{player.birth_country}}<br>
-            Nationality: {{player.nationality}}<br>
-            Height/Weight: {{player.height}}/{{player.weight}} lbs<br>
-            Team: {{player.team}}<br>
-            Position: {{player.primary_position}}<br>
+            <div class="card">
+            <div class="card-header bg-light"><h6 class="text-muted">Player Details</h6></div>
+            <div class="card-body" style="background-color: #fff8f0">
+            Birthdate: <span class="text-muted">{{player.birth_date}}</span><br>
+            Birth Place: <span class="text-muted">{{player.birth_city}}, {{player.birth_country}}</span><br>
+            Nationality: <span class="text-muted">{{player.nationality}}</span><br>
+            Height/Weight: <span class="text-muted">{{player.height}}/{{player.weight}} lbs</span><br>
+            Team: <a href="{% url 'team_info' pk=player.draft.id %}">{{player.draft}}</a><br>
+            Position: <span class="text-muted">{{player.primary_position}}</span><br>
+            </div>
+            </div>
         </div>
-        <div class="content-article col-md-4 ">
-            Drafted by {{player.draft}}<br>
+        <div class="col-md-4">
+            <div class="card">
+            <div class="card-header bg-light"><h6 class="text-muted">Draft Details</h6></div>
+            <div class="card-body" style="background-color: #fff8f0">
+            Drafted by <a href="{% url 'team_info' pk=player.draft.id %}">{{player.draft}}</a><br>
             Draft Year: {{player.year_drafted}}<br>
             {% if player.draft %}
             {{player.round_drafted}} Round | {{player.selection_number}} Overall<br>
+            </div>
             {% endif %}
+            </div>
         </div>
+
     </div>
     </div>
 </div>

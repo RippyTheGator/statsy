@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.core.paginator import Paginator
 from django_tables2 import SingleTableView, RequestConfig
+from django_tables2.views import SingleTableMixin
+from django_filters.views import FilterView
+from .filters import PlayerFilter
 from .models import Player, Team
 from .tables import PlayerTable
 import requests
@@ -38,14 +41,21 @@ class PlayerListView(SingleTableView):
         return context
 
 
+def filter_player_list(request):
+    queryset = Player.objects.all().order_by("full_name")
+    f = PlayerFilter(request.GET, queryset=queryset)
+    table = PlayerTable(f.qs)
+    RequestConfig(request, paginate={"per_page": 20, "page": 1}).configure(table)
+    return render(request, "stats/player_filter.html", {"table": table, "filter": f})
+
+
 def player_search(request):
     result = {}
     table = None
     data = None
-
     try:
         if 'player' in request.GET:
-            #data = Player.objects.filter(full_name__search=request.GET['player'])
+            # data = Player.objects.filter(full_name__search=request.GET['player'])
             name = request.GET['player'].split()
             data = Player.objects.filter(
                 first_name__startswith=name[0], last_name__startswith=name[1]).all().order_by('first_name')

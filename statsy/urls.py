@@ -27,4 +27,5 @@ urlpatterns = [
          stats_views.PlayerDetailView.as_view(), name='player_info'),
     path('player/all/', stats_views.PlayerListView.as_view(), name='player_list'),
     path('team/<int:pk>/', stats_views.TeamDetailView.as_view(), name='team_info'),
+    path('player/filter/', stats_views.filter_player_list, name='player_filter'),
 ]
