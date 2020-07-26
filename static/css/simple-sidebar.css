@@ -1,47 +1,85 @@
 .a:hover {
-     text-decoration: none;
- }
+    text-decoration: none;
+}
 
+img {
+    width: 75x;
+    height: 75px;
+    border-radius: 50%;
+    clip-path: circle(40%);
+    object-fit: cover;
+}
 
- img{
-   width:75x;
-   height:75px;
-   border-radius: 50%;
-   clip-path: circle(40%);
-   object-fit: cover;
- }
- .content-article{
-     padding-left: 15px;
-     padding-right: 15px;
-     padding-top:10px;
-     padding-bottom:5px;
-     font-size: 16px;
-     border-top-style: solid;
-     border-color: lightgray;
-     border-width: 1px;
-     background-color: #fff8f0;
- }
- .content {
-     padding-right: 10px;
-     padding-left: 10px;
-     padding-right: 10px;
-     padding-top:10px;
-     padding-bottom: 10px;
-     border-style: solid;
-     border-width: 1px;
-     border-color: lightgray;
-     background-color: #f5f5f5;
- }
+label {
+    margin-left: 5px;
+    font-size: 11px;
+}
 
+input[type=text], input[type=number]{
 
-#mobile-content {display: none;}
+  padding-left: 10px;
+  border: 1px solid;
+  border-color: #0275d8;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 90%;
+}
+
+select {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: 1px solid;
+    border-color: #0275d8;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 70%;
+}
+
+.content-article {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-top-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+    background-color: #fff8f0;
+}
+
+.content {
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    background-color: #f5f5f5;
+}
+
+.article {
+    float: left;
+    margin-left: 20%;
+}
+
+.content .filter-content {
+    width: 100px;
+
+}
+
+#mobile-content {
+    display: none;
+}
 
 @media screen and (max-width: 768px) {
-  #desktop-content {
-      visibility: hidden;
-      display: none
-  }
-  #mobile-content {
-      display:block;
-  }
-  }
+    #desktop-content {
+        visibility: hidden;
+        display: none
+    }
+
+    #mobile-content {
+        display: block;
+    }
+}

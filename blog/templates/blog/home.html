@@ -9,10 +9,10 @@
             Posted by: <strong>{{ post.update_username }}</strong>,
             <cite class="ml-2 mr-2">{{ post.update_published }}</cite>
             {% if post.update_edit != post.update_published %}
-                <strong>Edited:</strong> <cite>{{ post.update_edit }}</cite>
+            <strong>Edited:</strong> <cite>{{ post.update_edit }}</cite>
             {% endif %}
         </footer>
     </div>
-    </div>
-    {% endfor %}
+</div>
+{% endfor %}
 {% endblock %}

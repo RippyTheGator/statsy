@@ -1,0 +1,18 @@
+{% extends 'stats/index.html' %}
+{% block content %}
+<div class="content mt-5">
+    <h3><small>Player Database Search</small></h3>
+    <hr style="width:100%;text-align:left;margin-left:0">
+    <form action="{% url 'player_search' %}" class="form-inline" method="get" value="{{ request.GET.player }}">
+        <input class="form-control mr-sm-2" type="text" name="player">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Player</button>
+        {% if result.message %}
+        <p class="text-danger">*{{result.message}}</p>
+        {% endif %}
+    </form>
+    <p><small><a href="{% url 'player_filter' %}">Advance Search</a> | <a href="{% url 'player_list' %}">All Players</a></small></p>
+
+</div>
+{% block content2 %}
+{% endblock %}
+{% endblock %}

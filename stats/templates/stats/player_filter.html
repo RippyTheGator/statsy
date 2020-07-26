@@ -1,37 +1,47 @@
-{% extends 'stats/index.html' %}
+{% extends 'stats/player_base.html' %}
 {% load render_table from django_tables2 %}
 {% load crispy_forms_tags %}
-{% block content %}
+{% block content2 %}
 <div class="content mt-5">
-    <h3><small>Player Database Search</small></h3>
-    <hr style="width:100%;text-align:left;margin-left:0">
-    <form action="{% url 'player_search' %}"class="form-inline" method="get" value="{{ request.GET.player }}">
-        <input class="form-control mr-sm-2" type="text" name="player">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Player</button>
-        {% if result.message %}
-            <p class="text-danger">*{{result.message}}</p>
-        {% endif %}
-    </form>
-    <p><small><a href="#">Advance Search</a> | <a href="{% url 'player_list' %}">All Players</a></small></p>
+    <h3><small>Advanced Search</small></h3>
+{% if filter %}
+    <div class="content-article">
+        <form method="GET" class="form">
+            <div class="fieldWrapper">
+            <div class="row">
+            {% for field in filter.form %}
+            <div class="col-md-2">
+            {{ field.label_tag }}
+            </div>
+            <div class="col-md-2">
+            {{ field }}
+            </div>
+            {% endfor %}
+            </div>
+    </br><button class="btn btn-outline-primary ml-2 mt-2" type="submit">Filter</button>
+    </div>
+    </form></br>
 
 </div>
-<div class="content mt-5">
-    {% if filter %}
-    <div style="width:150px;">
-        <form method="GET" class="form">
-                {{ filter.form|crispy}}
-            <button class="btn btn-outline-primary" type="submit">Filter</button>
-        </form>
+<h3><small>Search Results</small></h3>
+<p>
+    <i>{{ table.rows|length }} players in the database matching the following criteria:</i></br>
+    <small>
+        {% if request.GET|length <= 0 %}<i class="text-muted">None</i>{% endif %}
+        {% for key, value in request.GET.items %}
+        {% if value != "" %}
+        {{key}}: <i class="text-muted">{{value}}</i>,
+        {% endif %}
+        {% endfor %}
+
+    </small>
+</p>
+<div class="content-article">
+    <div style="overflow-x:scroll;">
+        {% render_table table %}
     </div>
-    {% endif %}
-    <h3><small>All Players</small></h3>
-    <p>
-        <i><small>{{ count.count }} players in the database</small></i>
-    </p>
-    <div class="content-article">
-        <div style="overflow-x:scroll;">
-    {% render_table table %}
-    </div>
-    </div>
+    <small style="font-size:10px">Default sort is by most searched</small>
 </div>
+</div>
+{% endif %}
 {% endblock %}

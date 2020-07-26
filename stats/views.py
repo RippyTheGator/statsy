@@ -40,12 +40,17 @@ class PlayerListView(SingleTableView):
         context['count'] = Player.objects.all()
         return context
 
+    def get_query_set(self):
+        qs = super().get_queryset()
+        return qs.order_by("view_count")
+
 
 def filter_player_list(request):
-    queryset = Player.objects.all().order_by("full_name")
+    queryset = Player.objects.all().order_by("view_count")
     f = PlayerFilter(request.GET, queryset=queryset)
     table = PlayerTable(f.qs)
-    RequestConfig(request, paginate={"per_page": 20, "page": 1}).configure(table)
+    RequestConfig(request, paginate={
+                  "per_page": 20, "page": 1}).configure(table)
     return render(request, "stats/player_filter.html", {"table": table, "filter": f})
 
 
@@ -58,11 +63,17 @@ def player_search(request):
             # data = Player.objects.filter(full_name__search=request.GET['player'])
             name = request.GET['player'].split()
             data = Player.objects.filter(
-                first_name__startswith=name[0], last_name__startswith=name[1]).all().order_by('first_name')
+                first_name__startswith=name[0],
+                last_name__startswith=name[1]).all().order_by('first_name')
             table = PlayerTable(data)
             RequestConfig(request).configure(table)
             if len(data) == 1:
-                return redirect('player_info', pk=data[0].id, first_name=data[0].first_name, last_name=data[0].last_name)
+                return redirect(
+                    'player_info',
+                    pk=data[0].id,
+                    first_name=data[0].first_name,
+                    last_name=data[0].last_name
+                )
             result['success'] = True
             result['name'] = ' '.join(name)
 
@@ -75,7 +86,11 @@ def player_search(request):
 
     except IndexError:
         result['message'] = "One character from first and last name is required! Try again."
-    return render(request, 'stats/player_search.html', {'table': table, 'result': result, 'data': data})
+    return render(
+        request,
+        'stats/player_search.html',
+        {'table': table, 'result': result, 'data': data}
+    )
 
 
 def player_stats(request):

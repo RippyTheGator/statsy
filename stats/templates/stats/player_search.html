@@ -1,30 +1,17 @@
-{% extends 'stats/index.html' %}
+{% extends 'stats/player_base.html' %}
 {% load render_table from django_tables2 %}
-{% block content %}
-<div class="content mt-5">
-    <h3><small>Player Database Search</small></h3>
-    <hr style="width:100%;text-align:left;margin-left:0">
-    <form action="{% url 'player_search' %}"class="form-inline" method="get" value="{{ request.GET.player }}">
-        <input class="form-control mr-sm-2" type="text" name="player">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Player</button>
-        {% if result.message %}
-            <p class="text-danger">*{{result.message}}</p>
-        {% endif %}
-    </form>
-    <p><small><a href="#">Advance Search</a> | <a href="{% url 'player_list' %}">All Players</a></small></p>
+{% block content2 %}
+{% if result.success %}
+<div class="content mt-2">
+    <p> <b>Results for:</b> <i>{{ result.name|upper }}</i><br>
+        <i><small>Search returned {{ data.count }} player(s)</small></i>
+    </p>
+    <div class="content-article">
+        <div style="overflow-x:scroll;">
+            {% render_table table %}
+        </div>
+    </div>
 
 </div>
-    {% if result.success %}
-    <div class="content mt-2">
-        <p> <b>Results for:</b> <i>{{ result.name|upper }}</i><br>
-            <i><small>Search returned {{ data.count }} player(s)</small></i>
-        </p>
-        <div class="content-article">
-            <div style="overflow-x:scroll;">
-            {% render_table table %}
-            </div>
-        </div>
-
-    </div>
-    {% endif %}
+{% endif %}
 {% endblock %}

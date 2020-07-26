@@ -9,5 +9,6 @@ class PlayerTable(tables.Table):
     class Meta:
         model = Player
         #template_name = 'django_tables2/bootstrap-responsive.html'
-        exclude = ('id', 'view_count')
+        exclude = ('id', )
         attrs = {'class': 'paleblue'}
+        order_by = "-view_count"
