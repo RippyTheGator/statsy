@@ -92,13 +92,13 @@
              </div>
          </div>
              <div class="row">
-                 <div class="col-md-9">
+                 <div class="col-md-9 ml-5">
                      {% block content %}
                      {% endblock %}
                  </div>
                  <div id="desktop-content" class="col-md-3">
                      <div class="container article">
-                     <div class="content mt-5">
+                     <div class="content mt-5 ml-5">
                          <h5>Navigation</h5>
                          <div class="content-article">
                              <a href="{% url 'player_search' %}">Player Search</a></br>
@@ -109,7 +109,7 @@
                      </div>
                      <div class="content mt-5">
                          <h5>Most Searched Players</h5>
-                         <div class="content-article">
+                         <div class="content-article ml-5">
                              {% for player in trending_player %}
                              <a href="{% url 'player_info' pk=player.pk first_name=player.first_name last_name=player.last_name %}">{{ player.full_name }}</a></br>
                              {% endfor %}
