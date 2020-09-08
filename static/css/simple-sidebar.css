@@ -75,7 +75,7 @@ select {
     display: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
     #desktop-content {
         visibility: hidden;
         display: none
