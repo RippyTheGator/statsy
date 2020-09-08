@@ -58,8 +58,8 @@
          </nav>
      </header>
      <content style="flex-grow: 1">
-         <div class="container article">
              <div id="mobile-content">
+                 <div class="container">
                  <div class="content mt-2 col-md-3" style="width:auto">
                      <h5>Trending</h5>
                      <div class="content-article">
@@ -90,12 +90,14 @@
                      </div>
                  </div>
              </div>
+         </div>
              <div class="row">
                  <div class="col-md-9">
                      {% block content %}
                      {% endblock %}
                  </div>
                  <div id="desktop-content" class="col-md-3">
+                <div class="container article">
                      <div class="content mt-5">
                          <h5>Navigation</h5>
                          <div class="content-article">
