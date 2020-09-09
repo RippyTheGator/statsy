@@ -59,8 +59,8 @@
                     <h6 class="text-muted">Career Stats</h6>
                 </div>
                 <div class="card-body" style="background-color: #fff8f0">
-                    {% for player in career_stats %}
-                     {{player}}
+                    {% for player in object_list %}
+                     {{player.career_stats}}
                     {% endfor %}
 
                 </div>
