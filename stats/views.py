@@ -28,60 +28,60 @@ class PlayerDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # url = 'https://www.nhl.com/player/{}-{}-{}'.format(
-            self.object.first_name, self.object.last_name, self.object.id)
-        stat_data=pd.read_html(url)
+        # self.object.first_name, self.object.last_name, self.object.id)
+        # stat_data=pd.read_html(url)
         self.object.view_count += 1
         self.object.save()
-        context['career_stats']=stat_data
-        context['test']='1'
+        # context['career_stats']=stat_data
+        context['test'] = '1'
         return context
 
 
 class PlayerListView(SingleTableView):
-    model=Player
-    table_class=PlayerTable
+    model = Player
+    table_class = PlayerTable
 
     def get_context_data(self, **kwargs):
-        context=super().get_context_data(**kwargs)
-        context['count']=Player.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['count'] = Player.objects.all()
         return context
 
     def get_query_set(self):
-        qs=super().get_queryset()
+        qs = super().get_queryset()
         return qs.order_by("view_count")
 
 
 def filter_player_list(request):
-    queryset=Player.objects.all().order_by("view_count")
-    f=PlayerFilter(request.GET, queryset = queryset)
-    table=PlayerTable(f.qs)
-    RequestConfig(request, paginate = {
+    queryset = Player.objects.all().order_by("view_count")
+    f = PlayerFilter(request.GET, queryset=queryset)
+    table = PlayerTable(f.qs)
+    RequestConfig(request, paginate={
                   "per_page": 20, "page": 1}).configure(table)
     return render(request, "stats/player_filter.html", {"table": table, "filter": f})
 
 
 def player_search(request):
-    result={}
-    table=None
-    data=None
+    result = {}
+    table = None
+    data = None
     try:
         if 'player' in request.GET:
             # data = Player.objects.filter(full_name__search=request.GET['player'])
-            name=request.GET['player'].split()
-            data=Player.objects.filter(
-                first_name__startswith = name[0],
-                last_name__startswith = name[1]).all().order_by('first_name')
-            table=PlayerTable(data)
+            name = request.GET['player'].split()
+            data = Player.objects.filter(
+                first_name__startswith=name[0],
+                last_name__startswith=name[1]).all().order_by('first_name')
+            table = PlayerTable(data)
             RequestConfig(request).configure(table)
             if len(data) == 1:
                 return redirect(
                     'player_info',
-                    pk = data[0].id,
-                    first_name = data[0].first_name,
-                    last_name = data[0].last_name
+                    pk=data[0].id,
+                    first_name=data[0].first_name,
+                    last_name=data[0].last_name
                 )
-            result['success']=True
-            result['name']=' '.join(name)
+            result['success'] = True
+            result['name'] = ' '.join(name)
 
         # OLD CODE NOT USING DJANGO_TABLES2:
         # player = Player.objects.filter(
@@ -91,7 +91,7 @@ def player_search(request):
         # page_obj = paginator.get_page(page_number)
 
     except IndexError:
-        result['message']="One character from first and last name is required! Try again."
+        result['message'] = "One character from first and last name is required! Try again."
     return render(
         request,
         'stats/player_search.html',
