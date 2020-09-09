@@ -84,4 +84,7 @@ select {
     #mobile-content {
         display: block;
     }
+    .img {
+        width: 500px;
+    }
 }
