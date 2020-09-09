@@ -59,6 +59,9 @@
                     <h6 class="text-muted">Career Stats</h6>
                 </div>
                 <div class="card-body" style="background-color: #fff8f0">
+                    {% for stats in career_stats %}
+                        {{ stats }}
+                    {% endfor %}
                     {{ test }}
 
                 </div>
