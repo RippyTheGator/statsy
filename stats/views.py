@@ -7,6 +7,7 @@ from django_filters.views import FilterView
 from .filters import PlayerFilter
 from .models import Player, Team
 from .tables import PlayerTable
+import pandas as pd
 import requests
 import json
 
@@ -25,7 +26,10 @@ class PlayerDetailView(generic.DetailView):
     model = Player
 
     def get_context_data(self, **kwargs):
+        url = 'https://www.nhl.com/player/{}-{}-{}'.format(self.first_name, self.last_name, self.id)
+        stat_data = pd.read_html(url)
         context = super().get_context_data(**kwargs)
+        context['career_stats'] = stat_data
         self.object.view_count += 1
         self.object.save()
         return context
