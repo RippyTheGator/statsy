@@ -31,7 +31,7 @@ class PlayerDetailView(generic.DetailView):
             self.object.first_name, self.object.last_name, self.object.id)
         stat_data = pd.read_html(url)
         context['career_stats'] = stat_data
-        context['test'] = 1
+        context['test'] = '1'
         self.object.view_count += 1
         self.object.save()
         return context
