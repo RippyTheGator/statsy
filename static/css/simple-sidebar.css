@@ -2,17 +2,17 @@
     text-decoration: none;
 }
 
-img {
-    max-width: 100%;
-    height: auto
-}
-
 img .profile {
     width: 75x;
     height: 75px;
     border-radius: 50%;
     clip-path: circle(40%);
     object-fit: cover;
+}
+
+img {
+    max-width: 100%;
+    height: auto
 }
 
 label {
