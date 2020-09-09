@@ -27,7 +27,8 @@ class PlayerDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        url = 'https://www.nhl.com/player/{}-{}-{}'.format(self.first_name, self.last_name, self.id)
+        url = 'https://www.nhl.com/player/{}-{}-{}'.format(
+            self.object.first_name, self.object.last_name, self.object.id)
         stat_data = pd.read_html(url)
         context['career_stats'] = stat_data
         context['test'] = 1
