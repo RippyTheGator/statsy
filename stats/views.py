@@ -32,7 +32,7 @@ class PlayerDetailView(generic.DetailView):
         # stat_data=pd.read_html(url)
         self.object.view_count += 1
         self.object.save()
-        # context['career_stats']=stat_data
+        context['career_stats'] = stats(self.object.id, 'stats?stats=careerRegularSeason')
         context['test'] = '1'
         return context
 
@@ -134,12 +134,12 @@ def player_stats(request):
 #     )
 
 
-# def total_pts(id, data, league):
-#     t = 0
-#     for i in range(len(data)):
-#         if data[i]['stat'] != {} and data[i]['league']['name'] == league:
-#             t += data[i]['stat']['points']
-#     return t
+def total_pts(id, data, league):
+    t = 0
+    for i in range(len(data)):
+        if data[i]['stat'] != {} and data[i]['league']['name'] == league:
+            t += data[i]['stat']['points']
+    return t
 
 
 # def player_stats(request, id, fullname, arg):
@@ -157,3 +157,11 @@ def player_stats(request):
 
 def home(request):
     return render(request, 'stats/home.html')
+
+
+def stats(id, arg):
+    url = "https://statsapi.web.nhl.com/api/v1/people/{}/{}".format(id, arg)
+    r = requests.get(url)
+    data = r.json()
+    stats = data['stats'][0]['splits']
+    return stats
