@@ -29,7 +29,7 @@ class PlayerDetailView(generic.DetailView):
         url = 'https://www.nhl.com/player/{}-{}-{}'.format(self.first_name, self.last_name, self.id)
         stat_data = pd.read_html(url)
         context = super().get_context_data(**kwargs)
-        context['career_stats'] = stat_data
+        context['career_stats'] = stat_data.to_html()
         self.object.view_count += 1
         self.object.save()
         return context
